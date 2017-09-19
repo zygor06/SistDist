@@ -1,13 +1,17 @@
-import java.sql.Connection;
+package DB;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import Util.Log;
+
 public class Database {
 	
-	private Connection con;
+	private ConnectionFactory con;
 	private Log log;
 	
 	public Database() {
+		con = new ConnectionFactory();
 		log = new Log();
 		log.show(false);
 	}
@@ -19,14 +23,15 @@ public class Database {
 						"values(?,?)";
 		
 		try {
-			PreparedStatement stmt = con.prepareStatement(sql);
+			PreparedStatement stmt = con.pstatement(sql);
 			
 			stmt.setString(1, telefone);
 			stmt.setString(2, nome);
 			stmt.execute();
 			
 			log.i("Inserido");
-			con.close();
+			stmt.close();
+			con.fechaConexao();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -34,17 +39,5 @@ public class Database {
 		
 	}
 	
-	public void open() {
-		con = new ConnectionFactory().getConnection();
-	}
-	
-	public void close() {
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 		
 }
