@@ -1,10 +1,10 @@
 package Server;
 
+import Util.Log;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import Util.Log;
 
 public class Server {
 
@@ -14,7 +14,6 @@ public class Server {
 	private Log log;
 	
 	public Server() {
-		// TODO Auto-generated constructor stub
 		log = new Log();
 		log.show(true);
 		initSever();
@@ -26,11 +25,10 @@ public class Server {
 			
 			while (true) {
 				socket = serverSocketsocket.accept();
-				Thread thread = new Thread(new TrataCliente(socket));
-				thread.start(); 
+				//Thread thread = new Thread(new TrataCliente(socket));
+				//thread.start();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			log.i(e.getMessage());
 			e.printStackTrace();
 		}

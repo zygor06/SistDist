@@ -13,7 +13,7 @@ public class ConnectionFactory {
 	private static String pass = "uniceub";
 	
 	/**
-	 * Inicia a classe de conexão com o banco de dados
+	 * Inicia a classe de conexï¿½o com o banco de dados
 	 */
 	public ConnectionFactory() {
 		// TODO Auto-generated constructor stub
@@ -24,6 +24,24 @@ public class ConnectionFactory {
         }
 		
 	}
+
+	public Connection getConnection(String url, String root, String pass){
+
+		try {
+			return DriverManager.getConnection(url, root, pass);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	public Connection getConnection(){
+
+		try {
+			return DriverManager.getConnection("jdbc:mysql://localhost/db_agenda", "root", "root");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	
 	/*
 	 * Prepara para receber um SQL

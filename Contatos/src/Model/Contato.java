@@ -2,22 +2,22 @@ package Model;
 
 public class Contato {
 
-	private int telefone;
+	private String telefone;
 	private String nome;
 	
 	public Contato() {
 		
 	}
 	
-	public Contato(int telefone, String nome) {
+	public Contato(String telefone, String nome) {
 		this.telefone = telefone;
 		this.nome = nome;
 	}
 	
-	public int getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(int telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	public String getNome() {
