@@ -1,10 +1,13 @@
 package DB;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import Util.Log;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+/**
+ * @Deprecated
+ * Classes não será mais utilizada, foi substituida pela classe ContatoDao
+ */
 public class Database {
 	
 	private ConnectionFactory con;

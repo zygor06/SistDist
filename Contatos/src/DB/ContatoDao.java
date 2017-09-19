@@ -36,7 +36,7 @@ public class ContatoDao {
     }
 
     public void remover(Contato contato){
-        String sql = "DELETE FROM tb_agenda WHERE tb_agenda.telefone = ?";
+        String sql = "DELETE FROM tb_contato WHERE telefone = ?";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class ContatoDao {
         ArrayList<Contato> contatos = new ArrayList<>();
 
         try {
-            PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM tb_agenda");
+            PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM tb_contato");
             ResultSet result = statement.executeQuery();
 
             while (result.next()){

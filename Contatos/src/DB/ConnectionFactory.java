@@ -6,50 +6,35 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-	
+
 	private Connection connection;
-	private static String url = "jdbc:mysql://localhost/db_agenda";
-	private static String user = "root";
-	private static String pass = "uniceub";
-	
+	private final static String URL = "jdbc:mysql://localhost/db_agenda";
+	private final static String USER = "root";
+	private final static String PASS = "root";
+
 	/**
 	 * Inicia a classe de conex�o com o banco de dados
 	 */
 	public ConnectionFactory() {
-		// TODO Auto-generated constructor stub
 		try {
-			DriverManager.getConnection(url, user, pass );
+			connection = DriverManager.getConnection(URL, USER, PASS );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-		
+
 	}
 
-	public Connection getConnection(String url, String root, String pass){
-
-		try {
-			return DriverManager.getConnection(url, root, pass);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
 	public Connection getConnection(){
-
-		try {
-			return DriverManager.getConnection("jdbc:mysql://localhost/db_agenda", "root", "root");
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
+	    return connection;
 	}
 
-	
 	/*
 	 * Prepara para receber um SQL
 	 */
 	public PreparedStatement pstatement(String sql) throws SQLException {
 		return connection.prepareStatement(sql);
 	}
-	
+
 	/*
 	 * Fecha a conexao com o banco
 	 */
@@ -61,5 +46,5 @@ public class ConnectionFactory {
 			// TODO: handle exception
 		}
 	}
-	
+
 }
