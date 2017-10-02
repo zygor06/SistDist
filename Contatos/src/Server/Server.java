@@ -9,24 +9,22 @@ import java.net.Socket;
 public class Server {
 
 	private static int port = 654321;
-	private ServerSocket serverSocketsocket;
-	private Socket socket;
-	private Log log;
+	private static Log log;
 	
-	public Server() {
-		log = new Log();
+	public static void main(String[] args) {
+		Log log = new Log();
 		log.show(true);
 		initSever();
 	}
 	
-	public void initSever() {
+	public static void initSever() {
 		try {
-			serverSocketsocket = new ServerSocket(port);
+			ServerSocket serverSocketsocket = new ServerSocket(port);
 			
 			while (true) {
-				socket = serverSocketsocket.accept();
-				//Thread thread = new Thread(new TrataCliente(socket));
-				//thread.start();
+				Socket socket = serverSocketsocket.accept();
+				Thread thread = new Thread(new TrataCliente(socket));
+				thread.start();
 			}
 		} catch (IOException e) {
 			log.i(e.getMessage());
