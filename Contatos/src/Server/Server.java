@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class Server {
 
-	private static int port = 654321;
+	private static int port = 4321;
 	private static Log log;
 	
 	public static void main(String[] args) {

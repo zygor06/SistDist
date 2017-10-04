@@ -18,15 +18,15 @@ public class Client {
     private static String ipLocal;
     
     //Porta a ser utilizada
-    private static int port = 654321;
+    private static int port = 4321;
     
     public static void main(String[] args) {
 		
     	 try {
-             //IP da máquina utilizada como servidor
+             //IP da mï¿½quina utilizada como servidor
              ipLocal = InetAddress.getLocalHost().getHostAddress();
             
-             //Executa a ação de cliente
+             //Executa a aï¿½ï¿½o de cliente
              new Client().executa();
 
              
@@ -40,19 +40,19 @@ public class Client {
 	private void executa() {
 		// TODO Auto-generated method stub
 		try {
-            //Cria Socket seja localhost ou endereço ena rede
+            //Cria Socket seja localhost ou endereï¿½o ena rede
             //Socket cliente = new Socket(localHost, port);
             Socket cliente = new Socket(ipLocal, port);
             
             boolean saidaCli = true;
             
-            //Sinalização de conexão
+            //Sinalizaï¿½ï¿½o de conexï¿½o
             System.out.println("O cliente se conectou ao servidor!");
                         
             try {
                 /*
                 Fazendo a leitura do teclado
-                e apresentanado a saída
+                e apresentanado a saï¿½da
                 */
                 Scanner teclado = new Scanner(System.in); 
                 PrintStream saida = new PrintStream(cliente.getOutputStream());
