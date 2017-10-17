@@ -13,7 +13,7 @@ public class ConnectionFactory {
 	private final static String PASS = "root";
 
 	/**
-	 * Inicia a classe de conexï¿½o com o banco de dados
+	 * Inicia a classe de conexão com o banco de dados
 	 */
 	public ConnectionFactory() {
 		try {
@@ -24,12 +24,16 @@ public class ConnectionFactory {
 
 	}
 
+	/**
+	 * Constrói objeto de conexão
+	 * @return Objeto conexão
+	 */
 	public Connection getConnection(){
 	    return connection;
 	}
 
 	/*
-	 * Prepara para receber um SQL
+	 * Prepara para receber uma query
 	 */
 	public PreparedStatement pstatement(String sql) throws SQLException {
 		return connection.prepareStatement(sql);

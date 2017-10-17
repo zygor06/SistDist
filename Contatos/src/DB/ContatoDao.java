@@ -12,12 +12,19 @@ public class ContatoDao {
 
     private Connection connection;
 
+    /**
+     * Inicia a classe realizando conexão com o banco
+     */
     public ContatoDao(){
 
         this.connection = new ConnectionFactory().getConnection();
 
     }
 
+    /**
+     * Realiza inserção no banco de dados
+     * @param contato Objeto a ser inserido
+     */
     public void adiciona(Contato contato){
         String sql = "INSERT INTO tb_contato VALUES (?, ?)";
 
@@ -35,6 +42,10 @@ public class ContatoDao {
         }
     }
 
+    /**
+     * Remove um objeto específico do banco de dados
+     * @param contato Objeto a ser removido do banco de dados
+     */
     public void remover(Contato contato){
         String sql = "DELETE FROM tb_contato WHERE telefone = ?";
 
@@ -51,6 +62,10 @@ public class ContatoDao {
         }
     }
 
+    /**
+     * Busca o total de contatos no banco
+     * @return Lista de contatos gravados
+     */
     public ArrayList<Contato> getAll(){
 
         ArrayList<Contato> contatos = new ArrayList<>();
@@ -78,6 +93,11 @@ public class ContatoDao {
         return contatos;
     }
 
+    /**
+     * Busca um contato específico da lista
+     * @param telefone Número a ser procurado
+     * @return Contato relativo a número
+     */
     public Contato getByTelefone(String telefone){
 
         Contato contato = null;

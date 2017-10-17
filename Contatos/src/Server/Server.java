@@ -11,12 +11,19 @@ public class Server {
 	private static int port = 4321;
 	private static Log log;
 	
+	/*
+	 * Inicia o servidor
+	 */
 	public static void main(String[] args) {
 		Log log = new Log();
 		log.show(true);
 		initSever();
 	}
 	
+	/**
+	 * Lida com o socket do cliente
+	 * 
+	 */
 	public static void initSever() {
 		try {
 			ServerSocket serverSocketsocket = new ServerSocket(port);

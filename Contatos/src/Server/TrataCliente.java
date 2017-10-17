@@ -8,11 +8,18 @@ public class TrataCliente implements Runnable{
 
 	private Socket cliente = null;
 	
+	/**
+	 * Recebe o socket do cliente
+	 * @param cliente Número de socket do cliente
+	 */
 	public TrataCliente(Socket cliente) {
 		// TODO Auto-generated constructor stub
 		this.cliente = cliente;
 	}
-
+	
+	/**
+	 * Inicia Thread para o cliente acessar o servidor
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -22,7 +29,7 @@ public class TrataCliente implements Runnable{
 			entrada = new Scanner(cliente.getInputStream());
 			
 			while (entrada.hasNextLine()) {
-				
+				//Ler a entrada do cliente
 				
 			}
 		} catch (IOException e) {
