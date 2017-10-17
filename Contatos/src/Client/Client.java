@@ -15,7 +15,7 @@ public class Client {
 	
 	//IP do Local Host
     private static String localHost = "127.0.0.1";
-    private static String ipLocal;
+    private static String ipServidor;
     
     //Porta a ser utilizada
     private static int port = 4321;
@@ -23,10 +23,13 @@ public class Client {
     public static void main(String[] args) {
 		
     	 try {
-             //IP da m�quina utilizada como servidor
-             ipLocal = InetAddress.getLocalHost().getHostAddress();
+             //IP do servidor, caso ele esteja na mesma máquina do cliente: 
+    		 ipServidor = InetAddress.getLocalHost().getHostAddress();
             
-             //Executa a a��o de cliente
+    		 //IP do servidor, caso seja uma máquina diferente:
+    		 //ipServidor = 192.168.1.50 
+             
+    		 //Executa a ação de cliente
              new Client().executa();
 
              
@@ -40,19 +43,19 @@ public class Client {
 	private void executa() {
 		// TODO Auto-generated method stub
 		try {
-            //Cria Socket seja localhost ou endere�o ena rede
+            //Cria Socket seja localhost ou endereço ena rede
             //Socket cliente = new Socket(localHost, port);
-            Socket cliente = new Socket(ipLocal, port);
+            Socket cliente = new Socket(ipServidor, port);
             
             boolean saidaCli = true;
             
-            //Sinaliza��o de conex�o
-            System.out.println("O cliente se conectou ao servidor!");
+            //Sinalizacao de conexao
+            System.out.println("O cliente se conectou ao servidor, via porta " + port + ".");
                         
             try {
                 /*
                 Fazendo a leitura do teclado
-                e apresentanado a sa�da
+                e apresentanado a saida
                 */
                 Scanner teclado = new Scanner(System.in); 
                 PrintStream saida = new PrintStream(cliente.getOutputStream());

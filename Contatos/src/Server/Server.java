@@ -26,11 +26,13 @@ public class Server {
 	 */
 	public static void initSever() {
 		try {
-			ServerSocket serverSocketsocket = new ServerSocket(port);
+			ServerSocket serverSocket = new ServerSocket(port);
+			//Informacao de inicio do servidor:
+			System.out.println("Servidor iniciado na porta " + port + ".");
 			
 			while (true) {
-				Socket socket = serverSocketsocket.accept();
-				Thread thread = new Thread(new TrataCliente(socket));
+				Socket socket = serverSocket.accept();
+				Thread thread = new Thread(new TrataCliente(socket, serverSocket));
 				thread.start();
 			}
 		} catch (IOException e) {
