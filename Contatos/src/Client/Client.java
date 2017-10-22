@@ -3,26 +3,25 @@ package Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import Server.Server;
 
 public class Client {
 	
 	//IP do Local Host
-    private static String localHost = "127.0.0.1";
     private static String ipServidor;
+    
+    ObjectInputStream ois = null;
     
     //Porta a ser utilizada
     private static int port = 4321;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, IOException {
 		
     	 try {
              //IP do servidor, caso ele esteja na mesma máquina do cliente: 
@@ -37,51 +36,49 @@ public class Client {
              
         } catch (UnknownHostException e) {
            }
-          catch (IOException e) {
-        }
 		
 	}
 
-	private void executa() {
-		// TODO Auto-generated method stub
+	private void executa() throws ClassNotFoundException {
 		try {
-            //Cria Socket seja localhost ou endereço ena rede
-            //Socket cliente = new Socket(localHost, port);
+            //Cria Socket
             Socket cliente = new Socket(ipServidor, port);
             
-            boolean saidaCli = true;
-            
             //Sinalizacao de conexao
-            //System.out.println("O cliente se conectou ao servidor, via porta " + port + ".");
+            System.out.println("Conectado ao servidor de IP " + ipServidor + ", via porta " + port + ".\n");
             PrintStream saida = new PrintStream(cliente.getOutputStream());
                         
             try {
-            	/*
-                Fazendo a leitura do teclado
-                e apresentanado a saida
-                */
-                //Scanner teclado = new Scanner(System.in); 
-                BufferedReader entrada;
+                String message;
+            	BufferedReader entrada;
+            	ObjectInputStream ois = null;
+            	//Leitura da opção escolhida
                 entrada = new BufferedReader(new InputStreamReader(System.in));                
-            	menu();
             	char opcao = entrada.readLine().charAt(0);
+            	//InputStream para enviar mensagem ao servidor via socket.
+                ois = new ObjectInputStream(cliente.getInputStream());
+                menu();
             	while (opcao != '5') {
                 	switch (opcao) {
                 	case '1':
-                		//System.out.println("mandei 1");
-                		saida.println("1");
+                		saida.println("1"); //Envio do comando ao servidor
+                        message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println("Mensagem recebida: " + message);
                 		break;
                 	case '2':
-                		//System.out.println("mandei 2");
-                		saida.println("2");
+                		saida.println("2"); //Envio do comando ao servidor
+                		message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println("Mensagem recebida: " + message);
                 		break;
                 	case '3':
-                		//System.out.println("mandei 3");
-                		saida.println("3");
+                		saida.println("3"); //Envio do comando ao servidor
+                		message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println("Mensagem recebida: " + message);
                 		break;
                 	case '4':
-                		//System.out.println("mandei 4");
-                		saida.println("4");
+                		saida.println("4"); //Envio do comando ao servidor
+                		message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println("Mensagem recebida: " + message);
                 		break;
             		default: 
             			System.out.println("Opção inválida.");
@@ -90,8 +87,12 @@ public class Client {
                     menu();
                     opcao = entrada.readLine().charAt(0);
             	}
-            	saida.println("desconectar");
+            	//Envia comando diferente do esperado, para o servidor fechar a conexão:
+            	saida.println("desconectar"); 
             	System.out.println("===APLICAÇÃO ENCERRADA===");
+            	//Liberando recursos
+            	ois.close(); 
+            	cliente.close();
             } catch (IOException e) {
                 
             }

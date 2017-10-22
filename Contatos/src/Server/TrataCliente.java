@@ -1,6 +1,7 @@
 package Server;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
@@ -29,29 +30,41 @@ public class TrataCliente implements Runnable{
 		Scanner entrada = null;
 		
 		try {
+			//DataOutputStream paraCliente = new DataOutputStream(cliente.getOutputStream());
+			//PrintWriter out = new PrintWriter(cliente.getOutputStream(), true);
+			ObjectOutputStream oos = new ObjectOutputStream(cliente.getOutputStream());
 			entrada = new Scanner(cliente.getInputStream());
 			while (entrada.hasNextLine()) {
 				
 				switch (entrada.nextLine()) {
 				case "1":
 					System.out.println("recebi 1");
+					//System.out.println(paraCliente.);
+					oos.writeObject("Teste: resposta ao comando 1");
 					//inserir código para listar os registros
 					break;
 				case "2":
 					System.out.println("recebi 2");
+					oos.writeObject("Teste: resposta ao comando 2");
 					//inserir código para armazenar registro
 					break;
 				case "3":
 					System.out.println("recebi 3");
+					oos.writeObject("Teste: resposta ao comando 3");
 					//inserir código para remover registro
 					break;
 				case "4":
 					System.out.println("recebi 4");
+					oos.writeObject("Teste: resposta ao comando 4");
 					//inserir código para recuperar registro 
 					break;
 				default: 
-					System.out.println("Cliente do endereço IP " + cliente.getInetAddress() + " desconectado.");
 					cliente.close();
+					if (cliente.isClosed()) {
+						System.out.println("Cliente do endereço IP " + cliente.getInetAddress() + " desconectado.");
+					} else {
+						System.out.println("Conexão mantida!");
+					}
 				}
 				
 				
