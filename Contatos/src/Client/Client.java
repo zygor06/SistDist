@@ -49,6 +49,7 @@ public class Client {
             PrintStream saida = new PrintStream(cliente.getOutputStream());
                         
             try {
+            	menu();
                 String message;
             	BufferedReader entrada;
             	ObjectInputStream ois = null;
@@ -57,7 +58,6 @@ public class Client {
             	char opcao = entrada.readLine().charAt(0);
             	//InputStream para enviar mensagem ao servidor via socket.
                 ois = new ObjectInputStream(cliente.getInputStream());
-                menu();
             	while (opcao != '5') {
                 	switch (opcao) {
                 	case '1':
