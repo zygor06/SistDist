@@ -1,6 +1,8 @@
 package Client;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -50,25 +52,63 @@ public class Client {
             boolean saidaCli = true;
             
             //Sinalizacao de conexao
-            System.out.println("O cliente se conectou ao servidor, via porta " + port + ".");
+            //System.out.println("O cliente se conectou ao servidor, via porta " + port + ".");
+            System.out.println("===AGENDA TELEFÔNICA===");
                         
             try {
-                /*
+            	/*
                 Fazendo a leitura do teclado
                 e apresentanado a saida
                 */
-                Scanner teclado = new Scanner(System.in); 
+                //Scanner teclado = new Scanner(System.in); 
                 PrintStream saida = new PrintStream(cliente.getOutputStream());
-                
-                while (teclado.hasNextLine()) {
-                   saida.println(teclado.nextLine());
-               }
-                
+                BufferedReader entrada;
+                entrada = new BufferedReader(new InputStreamReader(System.in));                
+            	menu();
+            	char opcao = entrada.readLine().charAt(0);
+            	while (opcao != '5') {
+                	switch (opcao) {
+                	case '1':
+                		System.out.println("mandei teste1");
+                		saida.println("teste1");
+                		break;
+                	case '2':
+                		System.out.println("mandei teste2");
+                		saida.println("teste2");
+                		break;
+                	case '3':
+                		System.out.println("mandei teste3");
+                		saida.println("teste3");
+                		break;
+                	case '4':
+                		System.out.println("mandei teste4");
+                		saida.println("teste4");
+                		break;
+            		default: 
+            			System.out.println("Opção inválida.");
+                	}
+            		System.out.println();
+                    menu();
+                    opcao = entrada.readLine().charAt(0);
+            	}
+            	System.out.println("Aplicacao encerrada.");
+                //inserir aqui o comando para o servidor fechar a conexao
             } catch (IOException e) {
                 
             }
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+	}	
+
+	private static void menu() {
+		System.out.println("1 - Lista registros");
+		System.out.println("2 - Armazena/Atualiza um registro");
+		System.out.println("3 - Remove um registro");
+		System.out.println("4 - Recupera um registro");
+		System.out.println("5 - Finaliza a Aplicação");
+		System.out.print("Selecione a opção: ");
 	}
+	
 }
+

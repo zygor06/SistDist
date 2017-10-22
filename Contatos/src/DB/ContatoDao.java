@@ -1,4 +1,4 @@
-package DB;
+	package DB;
 
 import Model.Contato;
 
@@ -13,7 +13,7 @@ public class ContatoDao {
     private Connection connection;
 
     /**
-     * Inicia a classe realizando conexão com o banco
+     * Inicia a classe realizando conexï¿½o com o banco
      */
     public ContatoDao(){
 
@@ -22,7 +22,7 @@ public class ContatoDao {
     }
 
     /**
-     * Realiza inserção no banco de dados
+     * Realiza inserï¿½ï¿½o no banco de dados
      * @param contato Objeto a ser inserido
      */
     public void adiciona(Contato contato){
@@ -43,7 +43,7 @@ public class ContatoDao {
     }
 
     /**
-     * Remove um objeto específico do banco de dados
+     * Remove um objeto especï¿½fico do banco de dados
      * @param contato Objeto a ser removido do banco de dados
      */
     public void remover(Contato contato){
@@ -94,9 +94,9 @@ public class ContatoDao {
     }
 
     /**
-     * Busca um contato específico da lista
-     * @param telefone Número a ser procurado
-     * @return Contato relativo a número
+     * Busca um contato especï¿½fico da lista
+     * @param telefone Nï¿½mero a ser procurado
+     * @return Contato relativo a nï¿½mero
      */
     public Contato getByTelefone(String telefone){
 

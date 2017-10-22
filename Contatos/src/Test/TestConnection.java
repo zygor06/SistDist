@@ -4,6 +4,7 @@ import DB.ContatoDao;
 import Model.Contato;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TestConnection {
 
@@ -16,17 +17,17 @@ public class TestConnection {
 
 		ContatoDao contatoDao = new ContatoDao();
 
-		Contato contato = new Contato();
-		contato.setTelefone("61999998888");
-		contato.setNome("Hygor");
+		//Contato contato = new Contato();
+		//contato.setTelefone("61999998888");
+		//contato.setNome("Hygor");
 
 		//contatoDao.adiciona(contato); //adicionado com sucesso!
 		//contatoDao.remover(contato); //removido com sucesso!
 
 		//Adicionar 60 contatos aleatórios
 
-		/*
-		for(int i = 0; i < 60; i++){
+		
+		/*for(int i = 0; i < 60; i++){
 
 			StringBuilder sb = new StringBuilder();
 			Random random = new Random();
