@@ -30,10 +30,29 @@ public class TrataCliente implements Runnable{
 		
 		try {
 			entrada = new Scanner(cliente.getInputStream());
-			
 			while (entrada.hasNextLine()) {
-				//Imprimir  a entrada do cliente
-				System.out.println(entrada.nextLine());
+				
+				switch (entrada.nextLine()) {
+				case "1":
+					System.out.println("recebi 1");
+					//inserir código para listar os registros
+					break;
+				case "2":
+					System.out.println("recebi 2");
+					//inserir código para armazenar registro
+					break;
+				case "3":
+					System.out.println("recebi 3");
+					//inserir código para remover registro
+					break;
+				case "4":
+					System.out.println("recebi 4");
+					//inserir código para recuperar registro 
+					break;
+				default: 
+					System.out.println("Cliente do endereço IP " + cliente.getInetAddress() + " desconectado.");
+					cliente.close();
+				}
 				
 				
 			}

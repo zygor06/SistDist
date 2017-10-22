@@ -53,7 +53,7 @@ public class Client {
             
             //Sinalizacao de conexao
             //System.out.println("O cliente se conectou ao servidor, via porta " + port + ".");
-            System.out.println("===AGENDA TELEFÔNICA===");
+            PrintStream saida = new PrintStream(cliente.getOutputStream());
                         
             try {
             	/*
@@ -61,7 +61,6 @@ public class Client {
                 e apresentanado a saida
                 */
                 //Scanner teclado = new Scanner(System.in); 
-                PrintStream saida = new PrintStream(cliente.getOutputStream());
                 BufferedReader entrada;
                 entrada = new BufferedReader(new InputStreamReader(System.in));                
             	menu();
@@ -69,20 +68,20 @@ public class Client {
             	while (opcao != '5') {
                 	switch (opcao) {
                 	case '1':
-                		System.out.println("mandei teste1");
-                		saida.println("teste1");
+                		//System.out.println("mandei 1");
+                		saida.println("1");
                 		break;
                 	case '2':
-                		System.out.println("mandei teste2");
-                		saida.println("teste2");
+                		//System.out.println("mandei 2");
+                		saida.println("2");
                 		break;
                 	case '3':
-                		System.out.println("mandei teste3");
-                		saida.println("teste3");
+                		//System.out.println("mandei 3");
+                		saida.println("3");
                 		break;
                 	case '4':
-                		System.out.println("mandei teste4");
-                		saida.println("teste4");
+                		//System.out.println("mandei 4");
+                		saida.println("4");
                 		break;
             		default: 
             			System.out.println("Opção inválida.");
@@ -91,8 +90,8 @@ public class Client {
                     menu();
                     opcao = entrada.readLine().charAt(0);
             	}
-            	System.out.println("Aplicacao encerrada.");
-                //inserir aqui o comando para o servidor fechar a conexao
+            	saida.println("desconectar");
+            	System.out.println("===APLICAÇÃO ENCERRADA===");
             } catch (IOException e) {
                 
             }
@@ -102,6 +101,7 @@ public class Client {
 	}	
 
 	private static void menu() {
+		System.out.println("===AGENDA TELEFÔNICA===");
 		System.out.println("1 - Lista registros");
 		System.out.println("2 - Armazena/Atualiza um registro");
 		System.out.println("3 - Remove um registro");
