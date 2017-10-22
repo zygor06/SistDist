@@ -103,7 +103,7 @@ public class ContatoDao {
         Contato contato = null;
 
         try {
-            PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM tb_agenda WHERE telefone = ?");
+            PreparedStatement statement = this.connection.prepareStatement("SELECT * FROM tb_contato WHERE telefone = ?");
             statement.setString(1, telefone);
             ResultSet result = statement.executeQuery();
 

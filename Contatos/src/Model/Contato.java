@@ -26,4 +26,17 @@ public class Contato {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}	
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		String n = (this.nome == null || this.nome.isEmpty()) ? "vazio" : this.nome;
+		String t = (this.telefone == null || this.telefone.isEmpty()) ? "vazio" : this.telefone;
+		sb.append("Nome:\t\t");
+		sb.append(n);
+		sb.append("\n");
+		sb.append("Telefone:\t");
+		sb.append(t);
+		
+		return sb.toString();
+	}
 }

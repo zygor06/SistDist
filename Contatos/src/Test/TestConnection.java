@@ -27,7 +27,7 @@ public class TestConnection {
 		//Adicionar 60 contatos aleatórios
 
 		
-		/*for(int i = 0; i < 60; i++){
+		for(int i = 0; i < 60; i++){
 
 			StringBuilder sb = new StringBuilder();
 			Random random = new Random();
@@ -41,7 +41,7 @@ public class TestConnection {
 			c.setTelefone(sb.toString());
 
 			contatoDao.adiciona(c);
-		}*/
+		}
 
 		// Imprimir todos os contatos  **funcionando!**
 
