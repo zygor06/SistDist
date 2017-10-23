@@ -20,7 +20,6 @@ public class Client {
 	
 	//IP do Local Host
     private static String ipServidor;
-    private ContatoDao contatoDao;
     
     ObjectInputStream ois = null;
     
@@ -29,18 +28,14 @@ public class Client {
     
     public static void main(String[] args) throws ClassNotFoundException, IOException {
 		
-    	 try {
-             //IP do servidor, caso ele esteja na mesma máquina do cliente: 
-    		 ipServidor = InetAddress.getLocalHost().getHostAddress();
-            
-    		 //IP do servidor, caso seja uma máquina diferente:
-    		 //ipServidor = 192.168.1.50 
-             
-    		 //Executa a ação de cliente
-             new Client().executa();
-
-             
-        } catch (UnknownHostException e) {}
+    	 //IP do servidor, caso ele esteja na mesma máquina do cliente: 
+		 ipServidor = "10.62.148.135";
+		
+		 //IP do servidor, caso seja uma máquina diferente:
+		 //ipServidor = 192.168.1.50 
+		 
+		 //Executa a ação de cliente
+		 new Client().executa();
 		
 	}
 
@@ -48,7 +43,6 @@ public class Client {
 		try {
             //Cria Socket
             Socket cliente = new Socket(ipServidor, port);
-            contatoDao = new ContatoDao();
             
             //Sinalizacao de conexao
             System.out.println("Conectado ao servidor de IP " + ipServidor + ", via porta " + port + ".\n");
