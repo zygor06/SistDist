@@ -24,6 +24,8 @@ public class TrataCliente implements Runnable{
 	public void run() {
 		Scanner entrada = null;
 		try {
+			//Informa o IP dos clientes que se conectarem, conforme aconteca a conexao.
+			System.out.println("Recebida conexão de cliente com endereço IP " + cliente.getInetAddress());
 			ObjectOutputStream oos = new ObjectOutputStream(cliente.getOutputStream());
 			entrada = new Scanner(cliente.getInputStream());
 			while (entrada.hasNextLine()) {
