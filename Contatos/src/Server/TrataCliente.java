@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import DB.ContatoDao;
+import Model.Contato;
 
 public class TrataCliente implements Runnable{
 	private Socket cliente = null;
@@ -23,6 +27,10 @@ public class TrataCliente implements Runnable{
 	@Override
 	public void run() {
 		Scanner entrada = null;
+		ContatoDao cdao;
+    	Contato contato;
+    	String nome;
+    	String telefone;
 		try {
 			//Informa o IP dos clientes que se conectarem, conforme aconteca a conexao.
 			System.out.println("Recebida conexão de cliente com endereço IP " + cliente.getInetAddress());
@@ -31,24 +39,44 @@ public class TrataCliente implements Runnable{
 			while (entrada.hasNextLine()) {
 				switch (entrada.nextLine()) {
 				case "1":
-					System.out.println("recebi 1");
-					oos.writeObject("Teste: resposta ao comando 1");
+					cdao = new ContatoDao();
+					ArrayList<Contato> contatos = cdao.getAll();
+					StringBuilder sb = new StringBuilder();
+            		for(Contato c : contatos){
+            			sb.append("Nome: " + c.getNome());
+            			sb.append("\nTelefone: " + c.getTelefone());
+            			sb.append("\n\n");
+            		}
+            		oos.writeObject(sb.toString());
+					//oos.writeObject("Teste: resposta ao comando 1");
 					//TO DO: inserir código para listar os registros
 					break;
 				case "2":
-					System.out.println("recebi 2");
-					oos.writeObject("Teste: resposta ao comando 2");
-					//TO DO: inserir código para armazenar registro
+					nome = entrada.nextLine();
+					telefone = entrada.nextLine();
+					
+					contato = new Contato();
+                    contato.setNome(nome);
+                    contato.setTelefone(telefone);
+                    cdao = new ContatoDao();
+                    cdao.adiciona(contato);
+                    
+					oos.writeObject("Nome e telefone adicionados ao banco.");
 					break;
 				case "3":
-					System.out.println("recebi 3");
-					oos.writeObject("Teste: resposta ao comando 3");
-					//TO DO: inserir código para remover registro
+					telefone = entrada.nextLine();
+					
+					cdao = new ContatoDao();
+                    contato = new Contato();
+                    contato.setTelefone(telefone);
+                    cdao.remover(contato);
+                    
+					oos.writeObject("Telefone: " + telefone + " removido da base.");
 					break;
 				case "4":
-					System.out.println("recebi 4");
-					oos.writeObject("Teste: resposta ao comando 4");
-					//TO DO: inserir código para recuperar registro 
+					telefone = entrada.nextLine();
+					cdao = new ContatoDao();
+					oos.writeObject(cdao.getByTelefone(telefone).toString());
 					break;
 				default: 
 					cliente.close();

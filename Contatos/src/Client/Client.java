@@ -74,46 +74,40 @@ public class Client {
                 	case '1':
                 		saida.println("1"); //Envio do comando ao servidor
                         message = (String) ois.readObject(); //Mensagem recebida do servidor
-                        System.out.println("Mensagem recebida: " + message);
-                        ArrayList<Contato> contatos = contatoDao.getAll();
-                		for(Contato c : contatos){
-                			System.out.print("Telefone: " + c.getTelefone());
-                			System.out.println("\tNome: " + c.getNome());
-                		}
+                        System.out.println(message);
+                        
                 		break;
                 	case '2':
-                		saida.println("2"); //Envio do comando ao servidor
-                		message = (String) ois.readObject(); //Mensagem recebida do servidor
-                        System.out.println("Mensagem recebida: " + message);
                         System.out.println("Informe o nome:");
                         nome = leitor.next();
                         System.out.println("Informe o telefone:");
                         telefone = leitor.next();
-                        contato = new Contato();
-                        contato.setNome(nome);
-                        contato.setTelefone(telefone);
-                        cdao = new ContatoDao();
-                        cdao.adiciona(contato);
+                        
+                        saida.println("2"); //Envio do comando ao servidor
+                        saida.println(nome);
+                        saida.println(telefone);
+                        message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println(message);
                 		break;
                 	case '3':
-                		saida.println("3"); //Envio do comando ao servidor
-                		message = (String) ois.readObject(); //Mensagem recebida do servidor
-                        System.out.println("Mensagem recebida: " + message);
                         System.out.println("Informe o telefone que deseja remover:");
                         telefone = leitor.next();
-                        cdao = new ContatoDao();
-                        contato = new Contato();
-                        contato.setTelefone(telefone);
-                        cdao.remover(contato);
+                        saida.println("3"); //Envio do comando ao servidor
+                        saida.println(telefone);
+                        message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println(message);
                 		break;
                 	case '4':
-                		saida.println("4"); //Envio do comando ao servidor
-                		message = (String) ois.readObject(); //Mensagem recebida do servidor
-                        System.out.println("Mensagem recebida: " + message);
                         System.out.println("Informe o telefone que deseja recuperar:");
                         telefone = leitor.next();
-                        cdao = new ContatoDao();
-                        System.out.println(cdao.getByTelefone(telefone));
+
+                        
+                        saida.println("4"); //Envio do comando ao servidor
+                        saida.println(telefone);
+                        message = (String) ois.readObject(); //Mensagem recebida do servidor
+                        System.out.println(message);
+                        
+                        
                         break;
             		default: 
             			System.out.println("Opção inválida.");
