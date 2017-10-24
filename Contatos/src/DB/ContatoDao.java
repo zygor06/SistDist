@@ -26,7 +26,15 @@ public class ContatoDao {
      * @param contato Objeto a ser inserido
      */
     public void adiciona(Contato contato){
-        String sql = "INSERT INTO tb_contato VALUES (?, ?)";
+    	
+    	String sql = "";
+    	
+    	if(getByTelefone(contato.getTelefone()).getTelefone() != null) {
+    		sql = "UPDATE tb_contato SET nome = '" + contato.getNome() + "' WHERE telefone = '"+ contato.getTelefone() +"';";
+    		//UPDATE tb_contato SET nome = ? WHERE telefone = ?;
+    	}else {
+    		sql = "INSERT INTO tb_contato VALUES (?, ?)";
+    	}
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);

@@ -29,7 +29,8 @@ public class Client {
     public static void main(String[] args) throws ClassNotFoundException, IOException {
 		
     	 //IP do servidor, caso ele esteja na mesma máquina do cliente: 
-		 ipServidor = "10.62.148.135";
+		 //ipServidor = "10.62.148.135";
+    	ipServidor = "10.61.17.16";
 		
 		 //IP do servidor, caso seja uma máquina diferente:
 		 //ipServidor = 192.168.1.50 
